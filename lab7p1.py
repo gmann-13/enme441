@@ -37,7 +37,7 @@ def web_page():
 
         <h2>HTML LED BRIGHTNESS</h2>
 
-        <form action="POST">
+        <form action="/" method = "POST">
           <label for="fname">Brightness:</label><br>
           <input type="range" id="brightness" name="brightness" value=0><br>
           <label for="lname">LED:</label><br>
