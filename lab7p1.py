@@ -15,8 +15,10 @@ ledbrs = [1,2,3]
 for p in pins: GPIO.setup(p, GPIO.OUT)
 for i in range(len(pins)): ledbrs[i] = GPIO.PWM(pins[i], freq)
 
+modledindex = 0
+br = 0
 def change_brightness(led, br):
-        led.ChangeDutyCycle(br)
+        ledbrs[led].ChangeDutyCycle(br)
 
 
 # Helper function to extract key,value pairs of POST data
@@ -91,6 +93,7 @@ def serve_web_page():
     except:
         print('Closing socket')
         s.close()
+change_brightness(1,0)
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM) # pass IP addr & socket type
 s.bind(('', 80))     # bind to given port
