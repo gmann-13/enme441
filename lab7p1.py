@@ -68,7 +68,7 @@ def serve_web_page():
             print('Waiting for connection...')
             conn, (client_ip, client_port) = s.accept()     # blocking call
             print(f'Connection from {client_ip} on client port {client_port}')
-            client_message = conn.recv(2048).decode('utf-8')
+            client_message = conn.recv(1024).decode('utf-8')
             print(f'Message from client:\n{client_message}')
             data_dict = parsePOSTdata(client_message)
             
