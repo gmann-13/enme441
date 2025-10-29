@@ -110,5 +110,5 @@ except:
     webpageThread.join()
     print('Closing socket')
     s.close()
-    for pwm in ledbrs: pwm.stop()
+    #for pwm in ledbrs: pwm.stop()
     GPIO.cleanup()
