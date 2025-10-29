@@ -11,9 +11,9 @@ GPIO.setmode(GPIO.BCM)
 
 pins = (2,3,4)
 freq = 60
-ledbrs = []
-for i in pins.len: ledbrs.join(GPIO.PWM(p, freq))
-
+ledbrs = [1,2,3]
+for p in pins: GPIO.setup(p, GPIO.OUT)
+for i in len pins: ledbrs[i] = GPIO.pwm(pins[i], freq)
 
 # Helper function to extract key,value pairs of POST data
 def parsePOSTdata(data):
@@ -71,6 +71,7 @@ def serve_web_page():
             client_message = conn.recv(2048).decode('utf-8')
             print(f'Message from client:\n{client_message}')
             data_dict = parsePOSTdata(client_message)
+            print(data_dict)
             if 'led_br' in data_dict.keys():   # make sure data was posted
                 led_byte = data_dict["led_byte"]
             else:   # web page loading for 1st time so start with 0 for the LED byte
