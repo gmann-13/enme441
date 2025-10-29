@@ -38,9 +38,8 @@ def web_page():
         <html>
         <body>
 
-        <h2>HTML LED BRIGHTNESS</h2>
 
-        <form action="/" method = "POST">
+        <form action="POST">
           <label for="fname">Brightness:</label><br>
           <input type="range" id="brightness" name="brightness" value=0><br>
           <label for="lname">LED:</label><br>
@@ -52,8 +51,6 @@ def web_page():
           <label for="LED 3">LED 3</label><br><br>
           <input type="submit" value="Change Brightness">
         </form> 
-
-        <p>change led brightnesses</p>
 
         </body>
         </html>
@@ -72,7 +69,7 @@ def serve_web_page():
             print(f'Message from client:\n{client_message}')
             data_dict = parsePOSTdata(client_message)
             print(data_dict)
-            modledindex = ledbrs[data_dict["led"]-1]
+            modledindex = ledbrs[data_dict["led"]]
             br = data_dict["brightness"]
             print(mod,br)
             #change_brightness(modledindex,br)
