@@ -37,6 +37,7 @@ def parsePOSTdata(data):
 def web_page():
     #rows = [f'<tr><td>{str(p)}</td><td>{GPIO.input(p)}</td></tr>' for p in pins]
     html = """
+        <!DOCTYPE html>
         <html>
         <body>
 
@@ -115,5 +116,5 @@ except:
     webpageThread.join()
     print('Closing socket')
     s.close()
-    #for pwm in ledbrs: pwm.stop()
+    pwm.stop()
     GPIO.cleanup()
