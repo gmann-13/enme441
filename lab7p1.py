@@ -15,9 +15,10 @@ ledbrs = [GPIO.PWM(2,freq),GPIO.PWM(3,freq),GPIO.PWM(4,freq)]
 for p in pins: GPIO.setup(p, GPIO.OUT)
 for i in range(len(pins)): ledbrs[i] = GPIO.PWM(pins[i], freq)
 
-def change_brightness()
-        modledindex = ledbrs[data_dict["led"]-1]
-        modled.ChangeDutyCycle(data_dict["brightness"])
+def change_brightness(led, br):
+        led.ChangeDutyCycle(br)
+
+
 # Helper function to extract key,value pairs of POST data
 def parsePOSTdata(data):
     data_dict = {}
@@ -72,7 +73,9 @@ def serve_web_page():
             print(f'Message from client:\n{client_message}')
             data_dict = parsePOSTdata(client_message)
             print(data_dict)
-            change_brightness()
+            modledindex = ledbrs[data_dict["led"]-1]
+            br = data_dict["brightness"]
+            change_brightness(modledindex,br)
             conn.send(b'HTTP/1.1 200 OK\r\n')                  # status line
             conn.send(b'Content-Type: text/html\r\n')          # headers
             conn.send(b'Connection: close\r\n\r\n')   
