@@ -41,11 +41,11 @@ def web_page():
           <label for="fname">Brightness:</label><br>
           <input type="range" id="brightness" name="brightness" value=0><br>
           <label for="lname">LED:</label><br>
-          <input type="radio" id="LED 1" name="led" value="led1">
+          <input type="radio" id="LED 1" name="led" value="1">
           <label for="LED 1">LED 1</label><br>
-          <input type="radio" id="LED 2" name="led" value="led2">
+          <input type="radio" id="LED 2" name="led" value="2">
           <label for="LED 2">LED 2</label><br>
-          <input type="radio" id="LED 3" name="led" value="led3">
+          <input type="radio" id="LED 3" name="led" value="3">
           <label for="LED 3">LED 3</label><br><br>
           <input type="submit" value="Change Brightness">
         </form> 
@@ -99,7 +99,8 @@ webpageThread.start()
 # a separate thread:
 try:
     while True:
-        pass    
+        modled = ledbrs[data_dict["led"]-1]
+        modled.ChangeDutyCycle(data_dict["brightness"])    
 except:
     print('Joining webpageThread')
     webpageThread.join()
