@@ -13,7 +13,7 @@ pins = (2,3,4)
 freq = 60
 ledbrs = [1,2,3]
 for p in pins: GPIO.setup(p, GPIO.OUT)
-for i in len(pins): ledbrs[i] = GPIO.pwm(pins[i], freq)
+for i in pins: ledbrs[i] = GPIO.pwm(pins[i], freq)
 
 # Helper function to extract key,value pairs of POST data
 def parsePOSTdata(data):
