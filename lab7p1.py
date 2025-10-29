@@ -74,7 +74,7 @@ def serve_web_page():
             
             print(data_dict)
             if 'led' in data_dict.keys():
-                modledindex = ledbrs[data_dict["led"]-1]
+                modledindex = data_dict["led"]-1
             else:
                 modledindex = 0
             if 'brightness' in data_dict.keys():
