@@ -98,7 +98,7 @@ def serve_web_page():
         
     except:
         print('Closing socket')
-        s.close()
+        #s.close()
 change_brightness(1,0)
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM) # pass IP addr & socket type
