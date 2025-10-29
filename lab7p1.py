@@ -11,10 +11,13 @@ GPIO.setmode(GPIO.BCM)
 
 pins = (2,3,4)
 freq = 60
-ledbrs = [1,2,3]
+ledbrs = [GPIO.PWM(2,freq),GPIO.PWM(3,freq),GPIO.PWM(4,freq)]
 for p in pins: GPIO.setup(p, GPIO.OUT)
 for i in range(len(pins)): ledbrs[i] = GPIO.PWM(pins[i], freq)
 
+def change_brightness()
+        modledindex = ledbrs[data_dict["led"]-1]
+        modled.ChangeDutyCycle(data_dict["brightness"])
 # Helper function to extract key,value pairs of POST data
 def parsePOSTdata(data):
     data_dict = {}
@@ -69,10 +72,7 @@ def serve_web_page():
             print(f'Message from client:\n{client_message}')
             data_dict = parsePOSTdata(client_message)
             print(data_dict)
-            if 'led_br' in data_dict.keys():   # make sure data was posted
-                led_byte = data_dict["led_byte"]
-            else:   # web page loading for 1st time so start with 0 for the LED byte
-                led_byte = '0'
+            change_brightness()
             conn.send(b'HTTP/1.1 200 OK\r\n')                  # status line
             conn.send(b'Content-Type: text/html\r\n')          # headers
             conn.send(b'Connection: close\r\n\r\n')   
@@ -99,12 +99,13 @@ webpageThread.start()
 # a separate thread:
 try:
     while True:
-        modled = ledbrs[data_dict["led"]-1]
-        modled.ChangeDutyCycle(data_dict["brightness"])    
+        modledindex = ledbrs[data_dict["led"]-1]
+        modled.ChangeDutyCycle(data_dict["brightness"])
+
 except:
     print('Joining webpageThread')
     webpageThread.join()
     print('Closing socket')
     s.close()
-    pwm.stop
+    for pwm in ledbrs: pwm.stop()
     GPIO.cleanup()
