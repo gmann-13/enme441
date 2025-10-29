@@ -103,8 +103,7 @@ webpageThread.start()
 # a separate thread:
 try:
     while True:
-        modledindex = ledbrs[data_dict["led"]-1]
-        modled.ChangeDutyCycle(data_dict["brightness"])
+        pass
 
 except:
     print('Joining webpageThread')
