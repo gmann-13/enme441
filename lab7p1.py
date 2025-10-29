@@ -41,11 +41,11 @@ def web_page():
           <label for="fname">Brightness:</label><br>
           <input type="range" id="brightness" name="brightness" value=0><br>
           <label for="lname">LED:</label><br>
-          <input type="radio" id="LED 1" name="led" value="LED 1">
+          <input type="radio" id="LED 1" name="led" value="led1">
           <label for="LED 1">LED 1</label><br>
-          <input type="radio" id="LED 2" name="led" value="LED 2">
+          <input type="radio" id="LED 2" name="led" value="led2">
           <label for="LED 2">LED 2</label><br>
-          <input type="radio" id="LED 3" name="led" value="LED 3">
+          <input type="radio" id="LED 3" name="led" value="led3">
           <label for="LED 3">LED 3</label><br><br>
           <input type="submit" value="Change Brightness">
         </form> 
@@ -55,7 +55,7 @@ def web_page():
         </body>
         </html>
         """
-    print(html)
+    #print(html)
     return (bytes(html,'utf-8'))   # convert html string to UTF-8 bytes object
 
 # Serve the web page to a client on connection:
@@ -101,7 +101,7 @@ try:
         pass    
 except:
     print('Joining webpageTread')
-    webpageTread.join()
+    webpageThread.join()
     print('Closing socket')
     s.close()
     pwm.stop
