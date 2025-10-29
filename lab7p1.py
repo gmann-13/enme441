@@ -11,7 +11,7 @@ GPIO.setmode(GPIO.BCM)
 
 pins = (2,3,4)
 freq = 60
-ledbrs = [GPIO.PWM(2,freq),GPIO.PWM(3,freq),GPIO.PWM(4,freq)]
+ledbrs = [1,2,3]
 for p in pins: GPIO.setup(p, GPIO.OUT)
 for i in range(len(pins)): ledbrs[i] = GPIO.PWM(pins[i], freq)
 
