@@ -60,9 +60,6 @@ def web_page():
 
 # Serve the web page to a client on connection:
 def serve_web_page():
-    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM) # TCP-IP socket
-    s.bind(('', 80))
-    s.listen(3)  # up to 3 queued connections
     try:
         while True:
             print('Waiting for connection...')
@@ -88,6 +85,10 @@ def serve_web_page():
     except:
         print('Closing socket')
         s.close()
+
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM) # pass IP addr & socket type
+s.bind(('', 80))     # bind to given port
+s.listen(3)          # up to 3 queued connections
 
 webpageThread = threading.Thread(target=serve_web_page)
 webpageThread.daemon = True
