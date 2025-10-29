@@ -101,7 +101,7 @@ try:
     while True:
         pass    
 except:
-    print('Joining webpageTread')
+    print('Joining webpageThread')
     webpageThread.join()
     print('Closing socket')
     s.close()
