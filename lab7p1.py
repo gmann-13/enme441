@@ -97,7 +97,7 @@ webpageThread.start()
 # a separate thread:
 try:
     while True:
-        
+        pass    
 except:
     print('Joining webpageTread')
     webpageTread.join()
