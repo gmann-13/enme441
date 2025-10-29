@@ -75,6 +75,7 @@ def serve_web_page():
             print(data_dict)
             modledindex = ledbrs[data_dict["led"]-1]
             br = data_dict["brightness"]
+            print(mod,br)
             change_brightness(modledindex,br)
             conn.send(b'HTTP/1.1 200 OK\r\n')                  # status line
             conn.send(b'Content-Type: text/html\r\n')          # headers
