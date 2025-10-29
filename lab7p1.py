@@ -40,9 +40,9 @@ def web_page():
 
 
         <form action="POST">
-          <label for="fname">Brightness:</label><br>
+          <label for="brightness">Brightness:</label><br>
           <input type="range" id="brightness" name="brightness" value=0><br>
-          <label for="lname">LED:</label><br>
+          <label for="led">LED:</label><br>
           <input type="radio" id="LED 1" name="led" value="1">
           <label for="LED 1">LED 1</label><br>
           <input type="radio" id="LED 2" name="led" value="2">
@@ -69,8 +69,14 @@ def serve_web_page():
             print(f'Message from client:\n{client_message}')
             data_dict = parsePOSTdata(client_message)
             print(data_dict)
-            modledindex = ledbrs[data_dict["led"]]
-            br = data_dict["brightness"]
+            if 'led' in data_dict.keys():
+                modledindex = ledbrs[data_dict["led"]-1]
+            else:
+                modledindex = 0
+            if 'brightness' in data_dict.keys():
+                br = data_dict["brightness"]
+            else:
+                br = 0
             print(mod,br)
             #change_brightness(modledindex,br)
             conn.send(b'HTTP/1.1 200 OK\r\n')                  # status line
