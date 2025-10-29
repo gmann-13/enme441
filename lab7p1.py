@@ -35,7 +35,6 @@ def parsePOSTdata(data):
 def web_page():
     #rows = [f'<tr><td>{str(p)}</td><td>{GPIO.input(p)}</td></tr>' for p in pins]
     html = """
-        <!DOCTYPE html>
         <html>
         <body>
 
