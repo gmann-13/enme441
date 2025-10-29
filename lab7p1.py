@@ -25,7 +25,7 @@ def change_brightness(led, br):
 def parsePOSTdata(data):
     data_dict = {}
     idx = data.find('\r\n\r\n')+4
-    data = data[:]
+    data = data[idx:]
     data_pairs = data.split('&')
     for pair in data_pairs:
         key_val = pair.split('=')
@@ -58,7 +58,7 @@ def web_page():
         </body>
         </html>
         """
-    #print(html)
+    print(html)
     return (bytes(html,'utf-8'))   # convert html string to UTF-8 bytes object
 
 # Serve the web page to a client on connection:
@@ -117,5 +117,4 @@ except:
     webpageThread.join()
     print('Closing socket')
     s.close()
-    pwm.stop()
     GPIO.cleanup()
