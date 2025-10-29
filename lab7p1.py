@@ -42,7 +42,7 @@ def web_page():
         <body>
 
 
-        <form action="POST">
+        <form action="/" method="POST">
           <label for="brightness">Brightness:</label><br>
           <input type="range" id="brightness" name="brightness" value=0><br>
           <label for="led">LED:</label><br>
@@ -82,7 +82,7 @@ def serve_web_page():
             else:
                 br = 0
             print(modledindex,br)
-            #change_brightness(modledindex,br)
+            change_brightness(modledindex,br)
             conn.send(b'HTTP/1.1 200 OK\r\n')                  # status line
             conn.send(b'Content-Type: text/html\r\n')          # headers
             conn.send(b'Connection: close\r\n\r\n')   
