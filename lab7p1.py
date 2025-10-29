@@ -25,7 +25,7 @@ def change_brightness(led, br):
 def parsePOSTdata(data):
     data_dict = {}
     idx = data.find('\r\n\r\n')+4
-    data = data[idx:]
+    data = data[:]
     data_pairs = data.split('&')
     for pair in data_pairs:
         key_val = pair.split('=')
@@ -71,6 +71,7 @@ def serve_web_page():
             client_message = conn.recv(2048).decode('utf-8')
             print(f'Message from client:\n{client_message}')
             data_dict = parsePOSTdata(client_message)
+            
             print(data_dict)
             if 'led' in data_dict.keys():
                 modledindex = ledbrs[data_dict["led"]-1]
