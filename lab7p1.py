@@ -74,12 +74,16 @@ def serve_web_page():
             
             print(data_dict)
             if 'led' in data_dict.keys():
+                print('led in msg')
                 modledindex = data_dict["led"]-1
             else:
                 modledindex = 0
+                print('led not in msg')
             if 'brightness' in data_dict.keys():
+                print('br in msg')
                 br = data_dict["brightness"]
             else:
+                print('br not in msg')
                 br = 0
             print(modledindex,br)
             change_brightness(modledindex,br)
