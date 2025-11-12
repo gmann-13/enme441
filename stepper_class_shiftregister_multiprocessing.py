@@ -57,7 +57,7 @@ class Stepper:
     def __step(self, dir):
         self.step_state += dir    # increment/decrement the step
         self.step_state %= 8      # ensure result stays in [0,7]
-        mask |= 0b1111<<self.shifter_bit_start
+        mask = 0b1111<<self.shifter_bit_start
         Stepper.shifter_outputs = mask & Stepper.seq[self.step_state]<<self.shifter_bit_start | ~mask & Stepper.shifter_outputs
         self.s.shiftByte(Stepper.shifter_outputs)
         self.angle += dir/Stepper.steps_per_degree
