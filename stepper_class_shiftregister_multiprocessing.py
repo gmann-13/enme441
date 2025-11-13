@@ -135,7 +135,7 @@ if __name__ == '__main__':
     m1.goAngle(-135) 
     m1.goAngle(135) 
     m1.goAngle(0)
-     
+    print("done")
     # While the motors are running in their separate processes, the main
     # code can continue doing its thing: 
     try:
