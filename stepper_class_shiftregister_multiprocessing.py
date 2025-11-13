@@ -81,7 +81,11 @@ class Stepper:
 
     # Move to an absolute angle taking the shortest possible path:
     def goAngle(self, angle):
-         pass
+        diff = angle - self.angle
+        if diff > 180.0:
+            diff = diff - 360.0
+        self.rotate(diff)
+
          # COMPLETE THIS METHOD FOR LAB 8
 
     # Set the motor zero point
@@ -120,7 +124,18 @@ if __name__ == '__main__':
     m2.rotate(-45)
     m2.rotate(45)
     m2.rotate(-90)
- 
+
+    #lab 8 part 3
+    m1.zero() 
+    m2.zero() 
+    m1.goAngle(90) 
+    m1.goAngle(-45) 
+    m2.goAngle(-90) 
+    m2.goAngle(45) 
+    m1.goAngle(-135) 
+    m1.goAngle(135) 
+    m1.goAngle(0)
+     
     # While the motors are running in their separate processes, the main
     # code can continue doing its thing: 
     try:
