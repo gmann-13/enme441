@@ -60,8 +60,8 @@ class Stepper:
         mask = 0b1111<<self.shifter_bit_start
         Stepper.shifter_outputs = (mask & Stepper.seq[self.step_state]<<self.shifter_bit_start) | (Stepper.shifter_outputs & ~mask)
         self.s.shiftByte(Stepper.shifter_outputs)
-        self.angle += dir/Stepper.steps_per_degree
-        self.angle %= 360         # limit to [0,359.9+] range
+        self.angle.value += dir/Stepper.steps_per_degree
+        self.angle.value %= 360         # limit to [0,359.9+] range
 
     # Move relative angle from current position:
     def __rotate(self, delta, angle):
@@ -81,7 +81,7 @@ class Stepper:
 
     # Move to an absolute angle taking the shortest possible path:
     def goAngle(self, angle):
-        diff = angle - self.angle
+        diff = angle - self.angle.value
         if diff > 180.0:
             diff = diff - 360.0
         self.rotate(diff)
@@ -90,7 +90,7 @@ class Stepper:
 
     # Set the motor zero point
     def zero(self):
-        self.angle = 0
+        self.angle.value = 0
 
 
 # Example use:
